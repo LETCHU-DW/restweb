@@ -29,362 +29,92 @@ Publish the website in the given URL.
 
 ## PROGRAM:
 '''
-<!-- save as colorful-menu.html and open in browser -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Colorful Restaurant Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --muted: #6b6f76;
-      --accent: linear-gradient(90deg,#ff8a65,#ffcc80); /* change this for different color theme */
-      --accent-2: linear-gradient(90deg,#7c4dff,#42a5f5);
-      --nav-bg: rgba(0,0,0,0.06);
-      --radius: 12px;
-      --shadow: 0 8px 24px rgba(16,24,40,0.08);
-    }
-
-    *{box-sizing: border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#fbfbff,#f0f4ff);
-      color:#222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:28px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-    }
-
-    .wrapper{
-      width:100%;
-      max-width:980px;
-      background:var(--card);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    /* Header area */
-    header.brand{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      padding:22px 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,255,0.8));
-      border-bottom:1px solid rgba(0,0,0,0.04);
-    }
-    .logo{
-      width:58px;
-      height:58px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--accent-2);
-      color:white;
-      font-weight:700;
-      font-family: "Montserrat", sans-serif;
-      font-size:20px;
-      box-shadow: 0 6px 18px rgba(66,165,245,0.14);
-    }
-    .brand h1{
-      margin:0;
-      font-family:"Montserrat",sans-serif;
-      font-size:20px;
-      letter-spacing:1px;
-    }
-    .brand p{ margin:0; color:var(--muted); font-size:13px; margin-top:3px; }
-
-    /* Nav */
-    nav.navbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 20px;
-      background:var(--nav-bg);
-    }
-
-    .nav-left{ display:flex; align-items:center; gap:12px; }
-    .menu{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .menu a{
-      display:inline-block;
-      padding:10px 16px;
-      border-radius:999px;
-      text-decoration:none;
-      color:#222;
-      font-weight:600;
-      font-size:14px;
-      transition:all .25s ease;
-    }
-    .menu a:hover{
-      transform:translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    }
-
-    /* colorful pill styles by index */
-    .menu a:nth-child(1){ background: linear-gradient(90deg,#ffd54f,#ffb74d); color:#2a2a2a; }
-    .menu a:nth-child(2){ background: linear-gradient(90deg,#ff8a65,#ff6e40); color:#fff; }
-    .menu a:nth-child(3){ background: linear-gradient(90deg,#9fa8da,#7c4dff); color:#fff; }
-    .menu a:nth-child(4){ background: linear-gradient(90deg,#80deea,#26c6da); color:#073642; }
-    .menu a:nth-child(5){ background: linear-gradient(90deg,#a5d6a7,#66bb6a); color:#083d06; }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .btn{
-      padding:10px 14px;
-      border-radius:10px;
-      background:linear-gradient(90deg,#ff6e7f,#bfe9ff);
-      color:white;
-      border:none;
-      font-weight:700;
-      cursor:pointer;
-      box-shadow:0 8px 20px rgba(255,110,127,0.12);
-      transition:transform .18s ease;
-    }
-    .btn:active{ transform:translateY(1px); }
-
-    /* Hero banner */
-    .hero{
-      padding:24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-    }
-    .hero-top{
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-    }
-    .promo{
-      flex:1;
-      border-radius:14px;
-      overflow:hidden;
-      background-image: url('https://images.unsplash.com/photo-1543332164-9aa9f07b2f3b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder');
-      background-size:cover;
-      background-position:center;
-      min-height:110px;
-      display:flex;
-      align-items:flex-end;
-      padding:18px;
-      color:white;
-      font-weight:700;
-      font-family:"Montserrat",sans-serif;
-      text-shadow:0 4px 12px rgba(0,0,0,0.32);
-    }
-    .promo .tag{
-      background:rgba(0,0,0,0.3);
-      padding:8px 12px;
-      border-radius:8px;
-      font-size:17px;
-    }
-
-    /* three-column cards */
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:18px;
-      margin-top:18px;
-    }
-    .card{
-      background:linear-gradient(180deg, #fff, #fff7f0);
-      border-radius:12px;
-      padding:14px;
-      box-shadow: 0 6px 18px rgba(15,20,30,0.04);
-      min-height:220px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .card img{ width:100%; height:110px; object-fit:cover; border-radius:8px; }
-    .card h3{ margin:0; font-size:16px; font-weight:700; }
-    .card p{ margin:0; color:var(--muted); font-size:13px; flex:1; }
-
-    .card a{ text-decoration:none; color:#1e88e5; font-weight:600; font-size:13px; }
-
-    footer{
-      padding:14px 24px;
-      border-top:1px solid rgba(0,0,0,0.04);
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* Responsive */
-    @media (max-width:880px){
-      .cards{ grid-template-columns: 1fr; }
-      .hero-top{ flex-direction:column; }
-      .menu{ display:none; }
-      .mobile-toggle{ display:inline-flex; }
-    }
-
-    /* mobile hamburger */
-    .mobile-toggle{
-      display:none;
-      background:transparent;
-      border:1px solid rgba(0,0,0,0.06);
-      padding:8px;
-      border-radius:10px;
-      cursor:pointer;
-      align-items:center;
-      gap:8px;
-    }
-    .mobile-menu{
-      display:none;
-      padding:12px 18px;
-      gap:10px;
-      flex-direction:column;
-      background:linear-gradient(180deg,#fff,#fff);
-      border-top:1px solid rgba(0,0,0,0.04);
-    }
-    .mobile-menu a{
-      padding:10px;
-      border-radius:8px;
-      text-decoration:none;
-      color:#222;
-      background:rgba(0,0,0,0.03);
-      font-weight:600;
-    }
-    .mobile-menu.show{ display:flex; }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicious Bites Restaurant</title>
+<style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; }
+    header { background:#ff6347; color:white; padding:20px 0; text-align:center; }
+    header nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+    header nav a:hover { text-decoration:underline; }
+    section { padding:50px 20px; text-align:center; }
+    .food-items { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+    .food-item { border:1px solid #ddd; padding:10px; width:200px; border-radius:10px; }
+    .food-item img { width:100%; border-radius:10px; }
+    ul { list-style:none; padding:0; }
+    ul li { margin:10px 0; }
+    footer { background:#333; color:white; text-align:center; padding:15px 0; }
+</style>
 </head>
 <body>
-  <div class="wrapper" role="banner">
-    <header class="brand" aria-hidden="false">
-      <div class="logo">LL</div>
-      <div>
-        <h1>Little Lemon (Colorful)</h1>
-        <p>Fresh • Tasty • Local — College-friendly prices</p>
-      </div>
-    </header>
 
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="nav-left">
-        <div class="menu" id="menuDesktop" role="menubar" aria-label="Primary">
-          <a href="#" role="menuitem">Home</a>
-          <a href="#" role="menuitem">Menu</a>
-          <a href="#" role="menuitem">Book a Table</a>
-          <a href="#" role="menuitem">Opening Hours</a>
-          <a href="#" role="menuitem">Contact</a>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="btn" aria-label="Order online">Order Online</button>
-
-        <!-- Mobile toggle visible on small screens -->
-        <button class="mobile-toggle" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="#2b2b2b" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          <span style="font-weight:700;font-size:13px">Menu</span>
-        </button>
-      </div>
+<header>
+    <h1>Delicious Bites</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
     </nav>
+</header>
 
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <a href="#">Home</a>
-      <a href="#">Menu</a>
-      <a href="#">Book a Table</a>
-      <a href="#">Opening Hours</a>
-      <a href="#">Contact</a>
-      <a href="#" style="background:linear-gradient(90deg,#ff8a65,#ff6e40); color:white; text-align:center;">Order Online</a>
+<section id="home">
+    <h2>Welcome to Delicious Bites!</h2>
+    <p>Experience the best taste of our freshly prepared meals.</p>
+</section>
+
+<section id="menu">
+    <h2>Our Menu</h2>
+    <div class="food-items">
+        <div class="food-item">
+            <img src="https://via.placeholder.com/150" alt="Pizza">
+            <h3>Pizza</h3>
+            <p>Cheesy and delicious pizza with fresh toppings.</p>
+        </div>
+        <div class="food-item">
+            <img src="https://via.placeholder.com/150" alt="Burger">
+            <h3>Burger</h3>
+            <p>Juicy burgers made with premium ingredients.</p>
+        </div>
+        <div class="food-item">
+            <img src="https://via.placeholder.com/150" alt="Pasta">
+            <h3>Pasta</h3>
+            <p>Italian-style pasta cooked to perfection.</p>
+        </div>
     </div>
+</section>
 
-    <section class="hero" role="region" aria-label="Promotions">
-      <div class="hero-top">
-        <div class="promo">
-          <div>
-            <div class="tag">30% Off This Weekend</div>
-          </div>
-        </div>
+<section id="services">
+    <h2>Our Services</h2>
+    <ul>
+        <li>Dine-in with cozy ambiance</li>
+        <li>Home delivery service</li>
+        <li>Online table reservation</li>
+        <li>Catering for events and parties</li>
+    </ul>
+</section>
 
-        <div style="flex-basis:320px; display:flex; flex-direction:column; gap:10px;">
-          <div style="background:linear-gradient(180deg,#fff,#fff7f3); border-radius:12px; padding:12px;">
-            <h3 style="margin:0 0 8px 0; font-family:Montserrat;">Quick Bite</h3>
-            <p style="margin:0; color:var(--muted); font-size:13px;">Student combo meals — pocket friendly and tasty.</p>
-          </div>
-          <div style="background:linear-gradient(180deg,#fff,#f3f8ff); border-radius:12px; padding:12px;">
-            <h3 style="margin:0 0 8px 0; font-family:Montserrat;">Reserve Now</h3>
-            <p style="margin:0; color:var(--muted); font-size:13px;">Book a table easily — group discounts available.</p>
-          </div>
-        </div>
-      </div>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@deliciousbites.com</p>
+    <p>Phone: +123 456 7890</p>
+    <p>Address: 123 Food Street, Gourmet City</p>
+</section>
 
-      <div class="cards" aria-hidden="false">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1543352634-5a3f9d2d32b9?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Grill skewers">
-          <h3>Our New Menu</h3>
-          <p>Try our student-friendly platters that are tasty and affordable. Great for study nights and group orders.</p>
-          <a href="#">See our new menu</a>
-        </article>
+<footer>
+    <p>&copy; 2025 Delicious Bites Restaurant. All rights reserved.</p>
+</footer>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Salad bowl">
-          <h3>Book a table</h3>
-          <p>Reserve a seat for special nights. We keep student-preferred timings in mind — evenings and weekends.</p>
-          <a href="#">Book your table now</a>
-        </article>
-
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Chef cooking">
-          <h3>Opening Hours</h3>
-          <p>Mon - Fri: 12pm – 10pm · Sat: 12pm – 11pm · Sun: 2pm – 9pm</p>
-          <a href="#">Contact & directions</a>
-        </article>
-      </div>
-    </section>
-
-    <footer>
-      Designed for students • Little Lemon — colorful demo
-    </footer>
-  </div>
-
-  <script>
-    // Mobile toggle logic
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger?.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('show');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      mobileMenu.setAttribute('aria-hidden', (!isOpen).toString());
-    });
-
-    // Optional: close mobile menu on outside click
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu || !hamburger) return;
-      const target = e.target;
-      if (!mobileMenu.contains(target) && !hamburger.contains(target) && mobileMenu.classList.contains('show')) {
-        mobileMenu.classList.remove('show');
-        hamburger.setAttribute('aria-expanded','false');
-        mobileMenu.setAttribute('aria-hidden','true');
-      }
-    });
-  </script>
 </body>
 </html>
 
 '''
 
 ## OUTPUT:
-![alt text](<karthi/Screenshot 2025-10-05 172451.png>)
+![alt text](<Screenshot 2025-10-11 142624.png>)
 
 ## RESULT:
 The program for designing software company website using HTML and CSS is completed successfully.
